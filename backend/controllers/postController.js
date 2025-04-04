@@ -12,17 +12,25 @@ const createSlug = (title) => {
 exports.showDashboard = async (req, res) => {
   try {
     const posts = await Post.find({}).sort({ createdAt: -1 });
-    res.render('admin/dashboard', { posts });
+    res.render('admin/dashboard', { 
+      title: 'Dashboard',
+      posts 
+    });
   } catch (error) {
     console.error(error);
     res.status(500).render('admin/error', { 
+      title: 'Error',
       message: 'Error loading dashboard' 
     });
   }
 };
 
 exports.showNewPostForm = (req, res) => {
-  res.render('admin/new-post', { error: null });
+  res.render('admin/new-post', { 
+    title: 'New Post',
+    error: null,
+    post: null
+  });
 };
 
 exports.createPost = async (req, res) => {
@@ -36,6 +44,7 @@ exports.createPost = async (req, res) => {
     const existingPost = await Post.findOne({ slug });
     if (existingPost) {
       return res.render('admin/new-post', {
+        title: 'New Post',
         error: 'A post with a similar title already exists',
         post: req.body
       });
@@ -57,6 +66,7 @@ exports.createPost = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.render('admin/new-post', {
+      title: 'New Post',
       error: 'Error creating post',
       post: req.body
     });
@@ -68,14 +78,20 @@ exports.showEditPostForm = async (req, res) => {
     const post = await Post.findById(req.params.id);
     if (!post) {
       return res.status(404).render('admin/error', { 
+        title: 'Error',
         message: 'Post not found' 
       });
     }
     
-    res.render('admin/edit-post', { post, error: null });
+    res.render('admin/edit-post', { 
+      title: 'Edit Post',
+      post, 
+      error: null 
+    });
   } catch (error) {
     console.error(error);
     res.status(500).render('admin/error', { 
+      title: 'Error',
       message: 'Error loading post' 
     });
   }
@@ -92,6 +108,7 @@ exports.updatePost = async (req, res) => {
     const post = await Post.findById(postId);
     if (!post) {
       return res.status(404).render('admin/error', { 
+        title: 'Error',
         message: 'Post not found' 
       });
     }
@@ -110,6 +127,7 @@ exports.updatePost = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).render('admin/edit-post', {
+      title: 'Edit Post',
       post: { ...req.body, _id: req.params.id },
       error: 'Error updating post'
     });
@@ -123,6 +141,7 @@ exports.deletePost = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).render('admin/error', { 
+      title: 'Error',
       message: 'Error deleting post' 
     });
   }

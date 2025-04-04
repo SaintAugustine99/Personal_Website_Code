@@ -2,7 +2,10 @@ const User = require('../models/User');
 
 // Authentication controller
 exports.showLogin = (req, res) => {
-  res.render('admin/login', { error: null });
+  res.render('admin/login', { 
+    title: 'Login',
+    error: null 
+  });
 };
 
 exports.login = async (req, res) => {
@@ -13,6 +16,7 @@ exports.login = async (req, res) => {
     const user = await User.findOne({ username });
     if (!user) {
       return res.render('admin/login', { 
+        title: 'Login',
         error: 'Invalid credentials' 
       });
     }
@@ -21,6 +25,7 @@ exports.login = async (req, res) => {
     const isMatch = await user.matchPassword(password);
     if (!isMatch) {
       return res.render('admin/login', { 
+        title: 'Login',
         error: 'Invalid credentials' 
       });
     }
@@ -33,6 +38,7 @@ exports.login = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.render('admin/login', { 
+      title: 'Login',
       error: 'Server error, please try again' 
     });
   }

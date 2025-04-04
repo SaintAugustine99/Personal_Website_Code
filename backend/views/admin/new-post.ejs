@@ -1,7 +1,6 @@
-<%- include('layout', { title: 'New Post', body: `
 <h2>Create New Post</h2>
 
-<% if (error) { %>
+<% if (typeof error !== 'undefined' && error) { %>
     <div class="alert alert-danger">
         <%= error %>
     </div>
@@ -10,28 +9,28 @@
 <form action="/admin/posts" method="POST">
     <div class="mb-3">
         <label for="title" class="form-label">Title</label>
-        <input type="text" class="form-control" id="title" name="title" value="<%= post ? post.title : '' %>" required>
+        <input type="text" class="form-control" id="title" name="title" value="<%= typeof post !== 'undefined' && post ? post.title : '' %>" required>
     </div>
     
     <div class="mb-3">
         <label for="excerpt" class="form-label">Excerpt</label>
-        <textarea class="form-control" id="excerpt" name="excerpt" rows="2" required><%= post ? post.excerpt : '' %></textarea>
+        <textarea class="form-control" id="excerpt" name="excerpt" rows="2" required><%= typeof post !== 'undefined' && post ? post.excerpt : '' %></textarea>
         <div class="form-text">A short summary of your post (displayed in blog listings).</div>
     </div>
     
     <div class="mb-3">
         <label for="content" class="form-label">Content</label>
-        <textarea class="form-control" id="content" name="content" rows="15" required><%= post ? post.content : '' %></textarea>
+        <textarea class="form-control" id="content" name="content" rows="15" required><%= typeof post !== 'undefined' && post ? post.content : '' %></textarea>
     </div>
     
     <div class="mb-3">
         <label for="tags" class="form-label">Tags</label>
-        <input type="text" class="form-control" id="tags" name="tags" value="<%= post && post.tags ? post.tags.join(', ') : '' %>">
+        <input type="text" class="form-control" id="tags" name="tags" value="<%= typeof post !== 'undefined' && post && post.tags ? post.tags.join(', ') : '' %>">
         <div class="form-text">Separate tags with commas (e.g., web development, javascript, tutorial).</div>
     </div>
     
     <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="published" name="published" <%= post && post.published ? 'checked' : '' %>>
+        <input type="checkbox" class="form-check-input" id="published" name="published" <%= typeof post !== 'undefined' && post && post.published ? 'checked' : '' %>>
         <label class="form-check-label" for="published">Publish immediately</label>
     </div>
     
@@ -40,9 +39,3 @@
         <a href="/admin/dashboard" class="btn btn-secondary">Cancel</a>
     </div>
 </form>
-
-<script>
-    // Basic rich text editing can be added here with libraries like TinyMCE
-    // For simplicity, we're using plain textareas for now
-</script>
-` }) %>

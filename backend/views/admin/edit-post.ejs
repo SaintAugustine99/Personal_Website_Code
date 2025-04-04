@@ -1,7 +1,6 @@
-<%- include('layout', { title: 'Edit Post', body: `
 <h2>Edit Post</h2>
 
-<% if (error) { %>
+<% if (typeof error !== 'undefined' && error) { %>
     <div class="alert alert-danger">
         <%= error %>
     </div>
@@ -40,9 +39,3 @@
         <a href="/admin/dashboard" class="btn btn-secondary">Cancel</a>
     </div>
 </form>
-
-<script>
-    // Basic rich text editing can be added here with libraries like TinyMCE
-    // For simplicity, we're using plain textareas for now
-</script>
-` }) %>

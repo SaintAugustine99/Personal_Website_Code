@@ -3,6 +3,7 @@ const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const methodOverride = require('method-override');
+const expressLayouts = require('express-ejs-layouts'); // ADD THIS LINE
 const connectDB = require('./config/db');
 const authController = require('./controllers/authController');
 
@@ -19,6 +20,12 @@ connectDB();
 // Set up EJS view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+// Set up express-ejs-layouts
+app.use(expressLayouts);
+app.set('layout', 'admin/layout'); // Default layout
+app.set("layout extractScripts", true);
+app.set("layout extractStyles", true);
 
 // Middleware
 app.use(express.static(path.join(__dirname, 'public')));
