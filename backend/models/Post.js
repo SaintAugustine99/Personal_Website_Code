@@ -19,6 +19,10 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  featuredImage: {
+    type: String,
+    default: null
+  },
   tags: {
     type: [String],
     default: []

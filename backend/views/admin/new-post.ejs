@@ -11,6 +11,12 @@
         <label for="title" class="form-label">Title</label>
         <input type="text" class="form-control" id="title" name="title" value="<%= typeof post !== 'undefined' && post ? post.title : '' %>" required>
     </div>
+
+    <div class="mb-3">
+        <label for="featuredImage" class="form-label">Featured Image</label>
+        <input type="file" class="form-control" id="featuredImage" name="featuredImage">
+        <div class="form-text">Choose an image to represent your post. Max size: 5MB.</div>
+    </div>
     
     <div class="mb-3">
         <label for="excerpt" class="form-label">Excerpt</label>
