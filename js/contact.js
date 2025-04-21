@@ -1,38 +1,64 @@
-// Add this to your main.js or create a new contact.js
-document.addEventListener('DOMContentLoaded', () => {
-    const contactForm = document.getElementById('contact');
-    
-    if (contactForm) {
-      contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(contactForm);
-        const formObject = {};
-        formData.forEach((value, key) => {
-          formObject[key] = value;
-        });
-        
-        try {
+// JavaScript for the contact page
+
+// Handle contact form submission
+async function handleContactForm() {
+  const form = document.getElementById('contact-form');
+  const formMessage = document.getElementById('form-message');
+  
+  if (!form || !formMessage) return;
+
+  form.addEventListener('submit', async function(event) {
+      event.preventDefault();
+      
+      // Clear previous messages
+      formMessage.style.display = 'none';
+      formMessage.className = 'alert';
+      
+      // Get form data
+      const formData = {
+          name: form.name.value,
+          email: form.email.value,
+          subject: form.subject.value,
+          message: form.message.value
+      };
+      
+      try {
+          // Send data to backend
           const response = await fetch('/api/contact', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formObject)
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(formData)
           });
           
-          const result = await response.json();
+          const data = await response.json();
           
-          if (result.success) {
-            alert('Thank you! Your message has been sent.');
-            contactForm.reset();
+          if (data.success) {
+              // Show success message
+              formMessage.textContent = 'Thank you for your message! I will get back to you soon.';
+              formMessage.classList.add('alert-success');
+              form.reset(); // Clear the form
           } else {
-            alert('There was an error sending your message. Please try again.');
+              // Show error message
+              formMessage.textContent = data.message || 'There was an error sending your message. Please try again.';
+              formMessage.classList.add('alert-error');
           }
-        } catch (error) {
+      } catch (error) {
           console.error('Error submitting form:', error);
-          alert('There was an error sending your message. Please try again.');
-        }
-      });
-    }
+          formMessage.textContent = 'There was an error sending your message. Please try again later.';
+          formMessage.classList.add('alert-error');
+      }
+      
+      // Display the message
+      formMessage.style.display = 'block';
+      
+      // Scroll to message
+      formMessage.scrollIntoView({ behavior: 'smooth' });
   });
+}
+
+// Execute when DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+  handleContactForm();
+});

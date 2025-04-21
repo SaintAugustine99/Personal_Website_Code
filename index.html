@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Personal Website</title>
+    <title>Onserio Ogeto - Personal Website</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/main.js" defer></script>
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">Your Name</div>
+            <div class="logo">Onserio Ogeto</div>
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="blog/index.html">Blog</a></li>
+                <li><a href="resume.html">Resume</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -21,36 +22,61 @@
 
     <main>
         <section class="hero">
-            <div class="hero-content">
-                <h1>Hi, I'm Onserio Ogeto</h1>
-                <p>Web Developer | Lawyer | Artist</p>
-            </div>
+            <h1>Hello, I'm Onserio Ogeto</h1>
+            <p>Lawyer, Artist & Software Engineer</p>
         </section>
 
-        <section class="about">
+        <section id="about">
             <h2>About Me</h2>
             <div class="about-content">
                 <div class="about-image">
-                    <!-- Replace with your image -->
-                    <img src="images/profile.jpg" alt="Your Name">
+                    <img src="img/profile.jpg" alt="Onserio Ogeto" onerror="this.src='https://via.placeholder.com/300x300?text=Onserio+Ogeto'">
                 </div>
                 <div class="about-text">
-                    <p>Welcome to my personal website! I'm a passionate lawyer, artist and web developer with experience in creating responsive and user-friendly websites.</p>
-                    <p>This is where you can write more about yourself, your background, education, work experience, skills, or any other information you'd like to share.</p>
-                    <p>Feel free to explore my blog where I share my thoughts on life and other topics that interest me.</p>
+                    <p>I'm a passionate Lawyer, Artist and Software Engineer with expertise in building modern, responsive websites and applications. I write, paint, and make audio-visual work- This is my passion</p>
+                    <p>My skills include Python, HTML, CSS, JavaScript, Node.js, Express, and MongoDB. I enjoy creating clean, efficient code and user-friendly interfaces.</p>
+                    <p>When I'm not coding, you can find me exploring new technologies, contributing to open source projects, or sharing my thoughts through my blog.</p>
                 </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Skills & Expertise</h2>
+            <div class="skills-container">
+                <div class="skill">
+                    <h3>Front-end Development</h3>
+                    <p>HTML5, CSS3, JavaScript, React</p>
+                </div>
+                <div class="skill">
+                    <h3>Back-end Development</h3>
+                    <p>Node.js, Python, Express, Django, MongoDB</p>
+                </div>
+                <div class="skill">
+                    <h3>Tools & Technologies</h3>
+                    <p>Git, npm, Webpack, RESTful APIs</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="recent-posts">
+            <h2>Recent Blog Posts</h2>
+            <div class="blog-posts" id="homepage-blog-posts">
+                <!-- Blog posts will be loaded here via JavaScript -->
+                <p class="loading-message">Loading recent posts...</p>
+            </div>
+            <div class="text-center">
+                <a href="blog/index.html" class="btn">View All Posts</a>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="social-links">
-            <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-            <a href="https://twitter.com/yourusername" target="_blank">Twitter</a>
-            <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
-            <!-- Add more social links as needed -->
+            <a href="https://github.com/SaintAugustine99" target="_blank">GitHub</a>
+            <a href="https://twitter.com/onserio" target="_blank">Twitter</a>
+            <a href="https://linkedin.com/in/onserio" target="_blank">LinkedIn</a>
         </div>
-        <p>&copy; 2025 Your Name. All rights reserved.</p>
+        <p>&copy; 2025 Onserio Ogeto. All rights reserved.</p>
     </footer>
 </body>
 </html>
